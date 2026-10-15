@@ -4,7 +4,7 @@ Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 
 ## Homepage
 
-Il titolo visibile del sito è **Edinburgh**, con sottotitolo «guida assolutamente non richiesta ma avevo un'ora libera e chtgpt plus»; per non rompere i link la repository mantiene il nome `edinburgh-aless`.
+Il titolo visibile del sito è **Edinburgh**, con sottotitolo «guida assolutamente non richiesta ma avevo un'ora libera e chatgpt plus · fare sempre doublecheck»; per non rompere i link la repository mantiene il nome `edinburgh-aless`.
 
 Accanto a **Qualche idea**, il pulsante **Randomizza scelte** sostituisce le quattro card con nuovi suggerimenti casuali, senza ripetere immediatamente quelli già visibili.
 
