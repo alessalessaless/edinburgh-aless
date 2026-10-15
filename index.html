@@ -1,7 +1,252 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#25362e"><title>Edinburgh Aless</title><style>
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#25362e"><title>Edinburgh Aless · Mild or Spicy?</title><style>
 :root{font-family:system-ui,-apple-system,sans-serif;color:#293b30;background:#f7f3ea}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}header{background:#25362e;color:#faf5e9;padding:24px 20px 22px;border-radius:0 0 25px 25px}header small{letter-spacing:.16em;color:#b5c7b8;font-size:10px}h1{font-family:Georgia,serif;font-size:37px;line-height:1.05;margin:9px 0}header p{color:#cbd6cb;margin:0}.shell{max-width:650px;margin:auto;padding:18px 16px 108px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-title{font-family:Georgia,serif;font-size:24px;margin:22px 0 12px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hero{border:0;border-radius:18px;padding:20px 14px;min-height:165px;text-align:left;color:#263b2c;background:#dce8d4}.hero.spicy{background:#f2d1ba;color:#653d2e}.hero strong{display:block;font-family:Georgia,serif;font-size:26px;margin:12px 0}.hero span{font-size:12px;line-height:1.4}.strip{background:#e8e2d6;border:0;border-radius:17px;padding:17px;text-align:left;width:100%;margin:13px 0 0}.strip strong{display:block;font-size:17px}.strip small{color:#617165}.extras{display:grid;grid-template-columns:1fr 1fr;gap:9px}.extra{background:white;border:1px solid #e6e1d7;border-radius:14px;padding:14px;text-align:left;min-height:83px;font-weight:650}.extra small{display:block;font-weight:400;color:#69796c;margin-top:5px}.cards{display:grid;gap:10px}.card{background:white;border:1px solid #e9e5dd;border-radius:16px;display:flex;align-items:center;gap:12px;padding:10px}.thumb{height:78px;width:85px;flex:none;border-radius:11px;background:linear-gradient(135deg,#c5d6c3,#e8d8c5);display:grid;place-items:center;font-size:31px}.cardmain{flex:1;min-width:0;border:0;background:none;text-align:left;padding:3px 0;color:inherit}.cardmain strong{display:block;font-size:15px}.cardmain small{display:block;color:#718074;margin-top:5px}.star{border:0;background:#f5f2eb;border-radius:50%;font-size:23px;width:42px;height:42px;color:#8a948a}.star.on{color:#db9d37;background:#fff4dc}.toolbar{display:flex;gap:8px;overflow:auto;padding:5px 0 12px}.chip{white-space:nowrap;border:1px solid #d9dcd4;background:white;border-radius:100px;padding:9px 13px;font-size:13px}.chip.active{background:#293d31;color:white}.search{width:100%;padding:14px;border:1px solid #d8ded5;border-radius:14px;background:white;margin:4px 0 8px}.nav{position:fixed;bottom:0;left:0;right:0;background:#fffdf8;border-top:1px solid #e6e2d8;display:flex;justify-content:space-around;padding:9px 5px calc(10px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:none;color:#7b877d;font-size:11px;min-width:65px}.nav button b{display:block;font-size:22px;margin-bottom:3px}.nav button.active{color:#294734;font-weight:700}.mix{background:#293d31;color:white;border-radius:19px;padding:20px;margin:14px 0}.mix .stats{display:flex;gap:10px;margin:13px 0}.stat{flex:1;border-radius:12px;background:#3c5642;padding:13px}.stat.sp{background:#714d3d}.stat strong{font-size:29px;display:block}.bar{height:13px;background:#ba8065;border-radius:20px;overflow:hidden}.bar div{height:100%;background:#a6c7a0}.note{font-size:12px;color:#7c867c}.empty{padding:30px;text-align:center;color:#798579;background:white;border-radius:15px}.detail{position:fixed;inset:0;background:#f7f3ea;z-index:30;overflow:auto;padding-bottom:30px}.detailhero{height:210px;background:linear-gradient(135deg,#d7e2d2,#f0d7bf);display:grid;place-items:center;font-size:85px}.detailbody{padding:23px;max-width:650px;margin:auto}.back{border:0;background:#fff;padding:11px 15px;border-radius:30px;margin-bottom:15px}.maps{display:block;background:#293d31;color:white;text-align:center;border-radius:40px;padding:15px;text-decoration:none;margin-top:18px}.notice{background:#ebe5d8;padding:13px;border-radius:12px;margin-top:12px}.loyal{background:white;border-radius:15px;padding:15px;margin:12px 0}.loyal img{display:block;width:100%;max-height:260px;object-fit:contain;margin:10px 0;cursor:zoom-in}.loyal code{overflow-wrap:anywhere}.photo-disclaimer{font-size:12px;color:#6e7b71;margin:8px 0}.hidden{display:none!important}button:focus-visible,a:focus-visible{outline:3px solid #a46b40;outline-offset:3px}
+
+/* Photos, dayparts and loyalty cards */
+.photo-thumb{position:relative;overflow:hidden;background:#e4e7e1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#66776e}
+.photo-thumb img,.detailhero img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-placeholder{display:block;width:100%;height:100%;background:linear-gradient(115deg,#e4e8e0 25%,#f5f1e9 50%,#e4e8e0 75%);background-size:240% 100%;animation:shimmer 1.8s infinite}
+@keyframes shimmer{to{background-position-x:-240%}}
+.photo-unavailable{font-size:10px;color:#627367;text-align:center;padding:10px}
+.card .thumb{height:90px;width:108px;border-radius:12px}
+.cardmain{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.cardmain small{line-height:1.4}
+.detailhero{height:255px;overflow:hidden;background:#e4e7e0;font-size:0}
+.photo-credit{font-size:12px;color:#657368;margin:12px 0 0;line-height:1.45}
+.photo-credit a{color:#3e654b;text-decoration:underline}
+.phase-title{font-family:Georgia,serif;font-size:20px;margin:26px 0 10px;display:flex;align-items:center;gap:9px}
+.phase-title::before{content:'';display:block;height:17px;width:4px;background:#a0b9a1;border-radius:8px}
+.phase-title small{font-family:system-ui,sans-serif;color:#839084;font-size:12px;font-weight:400}
+.phase-tab-group{margin:14px 0 5px}
+.phase-label{display:block;font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.12em;color:#6c776d;margin-bottom:8px}
+.phase-tab-group .toolbar{padding:0 0 9px}
+.phase-tab-group .chip{border-radius:12px;font-weight:650}
+.phase-tab-group .chip.active{background:#293d31;border-color:#293d31;color:#fff}
+.phase-hint{font-size:12px;color:#758077;line-height:1.4;margin:8px 0 12px}
+.explore-count{font-size:12px;color:#728075;margin:3px 0 0}
+.loyalty-tile{width:100%;text-align:left;border:1px solid #e8e3d8;background:#fff;border-radius:18px;padding:20px;margin:8px 0 4px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#293b30}
+.loyalty-tile strong{font-size:19px;display:block;margin-bottom:5px}
+.loyalty-tile small{color:#5e7364;display:block}
+.loyalty-view{background:#fff;padding:20px 14px;border-radius:18px;margin-top:20px;text-align:center}
+.loyalty-view svg,.loyalty-view canvas,.loyalty-view img{max-width:100%!important;height:auto!important;margin:22px auto 14px;display:block}
+.loyalty-number{font-size:16px;letter-spacing:.07em;overflow-wrap:anywhere;color:#111}
+.loyalty-view .loyalty-number{font-size:18px}
+.credit-heading{font-size:11px;color:#6c776d;margin:0}
+@media (max-width:360px){.card .thumb{width:88px;height:85px}.cardmain strong{font-size:14px}}
 </style></head><body><header><small>YOUR VERY PERSONAL GUIDE TO</small><h1>Edinburgh Aless</h1><p>Mild or Spicy? 🌿🌶️</p></header><main id="app" class="shell"></main><nav class="nav" id="nav"></nav><div id="detail" class="detail hidden"></div><script>
 const raw=[
 ['The Meadows','mild','🌳','🌅☀️','Parchi','Un parco enorme dove fermarvi a passeggiare o stare sull’erba.'],['Arthur’s Seat','spicy','⛰️','🌅☀️','Passeggiate','La vista ripaga la salita. Portate scarpe decenti e non sottovalutate il vento.','Se piove o tira molto vento, valutate bene la salita.'],['Rockstar North','spicy','🎮','☀️','Curiosità','Gli uffici dello studio di GTA. Guardateli da fuori; anche la zona merita un giro.'],['Mosque Kitchen','spicy','🍛','☀️🌙','Cibo','Cucina indiana, porzioni abbondanti e prezzi accessibili.'],['Pickleback','spicy','🥃','🌇🌙','Pub & Birre','Se volete provarlo, è uno shot di whisky seguito da uno shot di liquido dei cetriolini sottaceto.'],['The Last Drop','spicy','🍺','🌇🌙','Pub & Birre','Un pub a Grassmarket. Il nome richiama le esecuzioni che avvenivano nella piazza.'],['National Museum of Scotland','mild','🦕','🌅☀️','Musei','Museo enorme, gratuito e perfetto se piove. C’è anche Dolly, la pecora clonata.'],['Scott Monument','mild','🗼','🌅☀️','Monumenti','Una torre gotica in centro. Se salite, preparatevi a parecchi gradini stretti.'],['Bertie’s Proper Fish & Chips','mild','🐟','☀️🌙','Cibo','Se volete provare un fish & chips bello sostanzioso, fermatevi qui.'],['Tesco','spicy','🛒','🌅☀️🌙','Supermercati','Per una pausa economica, cercate il Meal Deal: main, snack e drink tra quelli inclusi.'],['Scottish Parliament','mild','🏛️','🌅☀️','Monumenti','Il Parlamento scozzese, ai piedi della Royal Mile.'],['Pepe’s Piri Piri','spicy','🌶️','☀️🌙','Cibo','Pollo speziato e fast food senza troppe pretese. C’è anche la salsa finale super piccante, se volete rischiare.'],['Calton Hill','mild','🌄','☀️🌇','Passeggiate','Una delle viste migliori della città, con molta meno fatica di Arthur’s Seat.'],['The Jolly Judge','spicy','🍻','🌇🌙','Pub & Birre','Un pub piccolo e nascosto in un vicolo vicino alla Royal Mile. Entrate per una pinta e restate un po’.'],['Braw Brunch','mild','🥞','🌅☀️','Cibo','Fermatevi per una colazione o un brunch sostanzioso.'],['Dean Village','mild','🏘️','☀️','Passeggiate','Un piccolo villaggio da cartolina in mezzo a Edimburgo. Fateci un giro lungo il fiume.'],['Princes Street Gardens','mild','🌷','☀️🌇','Parchi','Il parco proprio sotto il castello. Se c’è bel tempo, fermatevi un po’ sull’erba.'],['Floral Clock','mild','💐','☀️','Monumenti','Un orologio fatto di fiori nei Princes Street Gardens. La fioritura è stagionale.'],['M&S','mild','🧺','🌅☀️🌙','Supermercati','La roba è super buona, ma costa un po’.'],['Blackwell’s','mild','📚','🌅☀️','Librerie','Entrate anche solo per curiosare. È molto più grande di quanto sembri da fuori.'],['Black Medicine Coffee','mild','🍵','🌅☀️','Caffè','Il cartello fuori dice che Harry Potter non è stato scritto qui. Prendetevi un matcha latte.'],['Portobello Beach','spicy','🏖️','☀️🌇','Passeggiate','Sì, Edimburgo ha anche una spiaggia. Non aspettatevi il Mediterraneo. Vi mangiate un panino col pesce e tornate indietro.'],['Cables Wynd House (Banana Flats)','spicy','🏢','☀️','Curiosità','Il palazzone brutalista di Leith legato a Trainspotting. Guardatelo da fuori: ci abitano persone.'],['Greyfriars Kirkyard','spicy','🪦','🌅☀️','Curiosità','Un cimitero pieno di storie. Cercate la tomba di Thomas Riddell, legata alla leggenda del nome Voldemort.'],['Greyfriars Bobby','mild','🐕','🌅☀️','Monumenti','La statua del cane più famoso di Edimburgo. Evitate di strofinargli il naso.'],['Royal Mile','mild','🏰','🌅☀️🌙','Passeggiate','La strada più famosa del centro storico. Percorretela senza fretta.'],['Victoria Street','mild','🌈','🌅☀️','Passeggiate','La strada curva e colorata che avrete visto in mille foto.'],['Grassmarket','mild','🏙️','☀️🌙','Passeggiate','Una piazza piena di pub, proprio sotto il castello.'],['Edinburgh Castle','mild','🏯','🌅☀️','Monumenti','Da fuori è già spettacolare. Per entrare controllate prezzi e biglietti.'],['George Square','mild','🎓','🌅☀️','Passeggiate','Una delle zone universitarie della città.'],['Frankenstein Bar','mild','🧟','☀️🌙','Pub & Birre','Un pub a tema Frankenstein in una ex chiesa.'],['Scottish National Gallery','mild','🖼️','🌅☀️','Musei','Una galleria d’arte in pieno centro, con collezione permanente gratuita.'],['Makars Mash Bar','mild','🥔','☀️🌙','Cibo','Andate direttamente a chiedere il primo tavolo libero. Nella mia esperienza ve ne assegnano uno entro un paio d’ore.'],['Castle Café','mild','🍳','🌅','Cibo','Se cercate una Full Scottish Breakfast, è una delle opzioni da considerare.'],['Sainsbury’s','mild','🛍️','🌅☀️🌙','Supermercati','Anche qui cercate il Meal Deal: main, snack e drink tra quelli inclusi.'],['Lidl','spicy','🛒','🌅☀️🌙','Supermercati','Se fate la spesa, usate la Lidl Plus.'],['Union Social Garden','spicy','🍺','☀️🌙','Pub & Birre','Un beer garden vicino all’Informatics Forum. Controllate se è aperto.'],['The Elephant House','mild','🧈','☀️','Caffè','Andateci solo per la burrobirra (che a me fa schifo, è soda con caramello).','Disponibilità della burrobirra da verificare.'],['Pizza Posto','extra','🍕','☀️🌙','Pizza','Pizza napoletana in centro.'],['Truck Blu','extra','🚚','☀️🌙','Pizza','Truck gestito da italiani, vicino a Piccolino. Pizza napoletana preparata al momento.'],['Stonehaven & Dunnottar Castle','extra','🏰','☀️','Fuori da Edimburgo','Un castello spettacolare sulle scogliere, a picco sul mare. Vale la gita, ma mettete in conto un bel po’ di strada.'],['The Bay Fish & Chips','extra','🐟','☀️','Fuori da Edimburgo','Se andate a Stonehaven, fermatevi qui per un fish & chips sul mare.'],['Tour delle Highlands — GetYourGuide','extra','🏔️','🌅☀️','Fuori da Edimburgo','Le Highlands sono bellissime. Un tour organizzato da Edimburgo? Ma boh.'],['Informatics Forum','personal','💻','','Ale’s Path','Dove andavo a lavorare']];
-const places=raw.map((r,i)=>({id:i,name:r[0],type:r[1],emoji:r[2],time:r[3],category:r[4],description:r[5],warning:r[6]}));const aleNames=['Informatics Forum','The Meadows','Arthur’s Seat','Rockstar North','Mosque Kitchen','Pickleback','The Last Drop','National Museum of Scotland','Scott Monument','Bertie’s Proper Fish & Chips','Tesco','Scottish Parliament','Pepe’s Piri Piri','Calton Hill','The Jolly Judge','Braw Brunch','Dean Village','Princes Street Gardens','Floral Clock'];const ale=aleNames.map(n=>places.find(p=>p.name===n));let saved=[];try{saved=JSON.parse(localStorage.getItem('edinburgh-stars')||'[]')}catch{}let page='home',filter='Tutti',query='';const app=document.getElementById('app'),detail=document.getElementById('detail');function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function star(p){return `<button class="star ${saved.includes(p.id)?'on':''}" aria-label="${saved.includes(p.id)?'Rimuovi':'Aggiungi'} ${esc(p.name)} dai preferiti" onclick="toggle(${p.id})">${saved.includes(p.id)?'★':'☆'}</button>`}function card(p){return `<article class="card"><div class="thumb">${p.emoji}</div><button class="cardmain" onclick="openPlace(${p.id})"><strong>${esc(p.name)}</strong><small>${p.type==='mild'?'🌿 Mild':p.type==='spicy'?'🌶️ Spicy':'📍 '+esc(p.category)} ${p.time}</small></button>${star(p)}</article>`}function cards(a){return a.length?`<div class="cards">${a.map(card).join('')}</div>`:'<div class="empty">Qui ancora niente. ⭐</div>'}function mix(a){let m=a.filter(p=>p.type==='mild').length,s=a.filter(p=>p.type==='spicy').length,t=m+s,mp=t?Math.round(m/t*100):0;return `<div class="mix"><div class="row"><b>YOUR EDINBURGH MIX</b><span>🌿🌶️</span></div><div class="stats"><div class="stat">🌿 Mildness<strong>${mp}%</strong></div><div class="stat sp">🌶️ Spiciness<strong>${t?100-mp:0}%</strong></div></div><div class="bar"><div style="width:${mp}%"></div></div><p style="font-size:12px;color:#cbd7ce">${t} tappe Mild/Spicy nel mix</p></div>`}function nav(){document.getElementById('nav').innerHTML=[['home','⌂','Home'],['explore','⌕','Esplora'],['favorites','☆','Preferiti'],['ale','⌖','Ale’s Path']].map(([id,ico,label])=>`<button class="${page===id?'active':''}" onclick="go('${id}')"><b>${ico}</b>${label}</button>`).join('')}function go(p){page=p;filter='Tutti';query='';render();window.scrollTo(0,0)}function section(p,title){page=p;filter=title;query='';render();window.scrollTo(0,0)}function render(){nav();if(page==='home'){app.innerHTML=`<div class="hero-grid"><button class="hero" onclick="section('explore','Mild')">🌿<strong>Mild</strong><span>Classici, passeggiate e posti tranquilli. ↗</span></button><button class="hero spicy" onclick="section('explore','Spicy')">🌶️<strong>Spicy</strong><span>Posti strani, cibo e qualche deviazione. ↗</span></button></div><button class="strip" onclick="go('ale')"><strong>📍 Ale’s Path →</strong><small>Quello che farei io, se fossi lì.</small></button><h2 class="section-title">Le altre cose</h2><div class="extras"><button class="extra" onclick="section('explore','Pizza')">🍕 Pizza, anche se weird<small>Due opzioni, zero giudizi</small></button><button class="extra" onclick="section('explore','Fuori da Edimburgo')">🏔️ Fuori da Edimburgo<small>Gite e idee</small></button><button class="extra" onclick="page='loyalty';render()">💳 Loyalty Cards<small>QR e codici a portata di mano</small></button><button class="extra" onclick="page='notes';render()">⚠️ Survival Notes<small>Consigli prima di partire</small></button></div><h2 class="section-title">Qualche idea</h2>${cards([places[1],places[6],places[12],places[13]])}`}else if(page==='explore'){let options=['Tutti','Mild','Spicy','Cibo','Pub & Birre','Passeggiate','Musei','Supermercati','Librerie','Caffè','Pizza','Fuori da Edimburgo'];let a=places.filter(p=>p.type!=='personal'&&(filter==='Tutti'||(filter==='Mild'&&p.type==='mild')||(filter==='Spicy'&&p.type==='spicy')||p.category===filter)).filter(p=>(p.name+' '+p.category+' '+p.description).toLowerCase().includes(query.toLowerCase()));app.innerHTML=`<h2 class="section-title">Esplora</h2><input class="search" placeholder="Cerca un posto, una pizza, un pub…" aria-label="Cerca" value="${esc(query)}" oninput="query=this.value;updateResults()"><div class="toolbar">${options.map(o=>`<button class="chip ${filter===o?'active':''}" onclick="filter='${esc(o)}';render()">${esc(o)}</button>`).join('')}</div><div id="results">${cards(a)}</div>`}else if(page==='favorites'){let a=places.filter(p=>saved.includes(p.id));app.innerHTML=`<h2 class="section-title">⭐ Preferiti</h2><p>Il vostro giro, deciso da voi.</p>${mix(a)}${cards(a)}`}else if(page==='ale'){app.innerHTML=`<h2 class="section-title">📍 Ale’s Path</h2><p>Quello che farei io, se fossi lì. La selezione è fissa; voi potete comunque salvarvi i posti con la stellina.</p>${mix(ale)}${cards(ale)}`}else if(page==='loyalty'){app.innerHTML=`<h2 class="section-title">💳 Loyalty Cards</h2><p>Le tessere non sono incluse in questa versione pubblica. Fatevele condividere in privato.</p>`}else if(page==='notes'){app.innerHTML=`<h2 class="section-title">⚠️ Survival Notes</h2><div class="notice">🌬️ <b>Vento e pioggia.</b> Ad Arthur’s Seat servono scarpe decenti; con terreno bagnato fate attenzione.</div><div class="notice">🥪 <b>Meal Deal.</b> Da Tesco e Sainsbury’s scegliete un main, uno snack e una bevanda tra i prodotti inclusi nella promozione.</div><div class="notice">🐕 <b>Greyfriars Bobby.</b> Il naso lucido non è un invito a strofinarlo.</div><div class="notice">🥔 <b>Makars.</b> Provate a chiedere direttamente un tavolo: potrebbe esserci da aspettare.</div><div class="notice">🗼 <b>Scott Monument.</b> I gradini per salire sono stretti.</div>`}else{page='home';render()} }function updateResults(){let a=places.filter(p=>p.type!=='personal'&&(filter==='Tutti'||(filter==='Mild'&&p.type==='mild')||(filter==='Spicy'&&p.type==='spicy')||p.category===filter)).filter(p=>(p.name+' '+p.category+' '+p.description).toLowerCase().includes(query.toLowerCase()));document.getElementById('results').innerHTML=cards(a)}function toggle(id){saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];localStorage.setItem('edinburgh-stars',JSON.stringify(saved));render()}function openPlace(id){let p=places[id];detail.innerHTML=`<div class="detailhero">${p.emoji}</div><div class="detailbody"><button class="back" onclick="closePlace()">← Indietro</button><div class="row"><small>${p.type==='mild'?'🌿 MILD':p.type==='spicy'?'🌶️ SPICY':esc(p.category)} · ${p.time}</small>${star(p)}</div><h1 style="color:#293b30;font-size:33px">${esc(p.name)}</h1><p style="font-size:17px;line-height:1.55">${esc(p.description)}</p>${p.warning?`<div class="notice">⚠️ ${esc(p.warning)}</div>`:''}<a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' Edinburgh Scotland')}">↗ Apri su Google Maps</a><p class="photo-disclaimer">Le fotografie dei luoghi saranno inserite nella prossima versione.</p></div>`;detail.classList.remove('hidden');document.body.style.overflow='hidden'}function closePlace(){detail.classList.add('hidden');document.body.style.overflow='';render()}document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlace()});render();
+const places=raw.map((r,i)=>({id:i,name:r[0],type:r[1],emoji:r[2],time:r[3],category:r[4],description:r[5],warning:r[6]}));const aleNames=['Informatics Forum','The Meadows','Arthur’s Seat','Rockstar North','Mosque Kitchen','Pickleback','The Last Drop','National Museum of Scotland','Scott Monument','Bertie’s Proper Fish & Chips','Tesco','Scottish Parliament','Pepe’s Piri Piri','Calton Hill','The Jolly Judge','Braw Brunch','Dean Village','Princes Street Gardens','Floral Clock'];const ale=aleNames.map(n=>places.find(p=>p.name===n));let saved=[];try{saved=JSON.parse(localStorage.getItem('edinburgh-stars')||'[]')}catch{}let page='home',filter='Tutti',query='';const app=document.getElementById('app'),detail=document.getElementById('detail');
+const dayparts=['Colazione','Giretti','Pranzo','Birrette','Cena','Post cena'];
+const breakfastNames=['Braw Brunch','Castle Café','Black Medicine Coffee','The Elephant House'];
+const postNames=['Pickleback','The Last Drop','The Jolly Judge','Frankenstein Bar'];
+function phasesFor(p){
+  const n=p.name,c=p.category, phases=[];
+  if(breakfastNames.includes(n))phases.push('Colazione');
+  if(['Parchi','Passeggiate','Curiosità','Monumenti','Musei','Librerie','Supermercati','Fuori da Edimburgo'].includes(c))phases.push('Giretti');
+  if(['Cibo','Pizza','Supermercati'].includes(c) && n!=='Castle Café' || n==='The Bay Fish & Chips')phases.push('Pranzo');
+  if(c==='Pub & Birre')phases.push('Birrette');
+  if(['Cibo','Pizza'].includes(c)&&!['Braw Brunch','Castle Café'].includes(n))phases.push('Cena');
+  if(postNames.includes(n))phases.push('Post cena');
+  if(n==='The Elephant House'&&!phases.includes('Giretti'))phases.push('Giretti');
+  return phases;
+}
+const wikiTitles={
+ 'The Meadows':'The Meadows (Edinburgh)',
+ 'Arthur’s Seat':"Arthur's Seat",
+ 'National Museum of Scotland':'National Museum of Scotland',
+ 'Scott Monument':'Scott Monument',
+ 'Scottish Parliament':'Scottish Parliament Building',
+ 'Calton Hill':'Calton Hill',
+ 'Dean Village':'Dean Village',
+ 'Princes Street Gardens':'Princes Street Gardens',
+ 'Portobello Beach':'Portobello, Edinburgh',
+ 'Cables Wynd House (Banana Flats)':'Cables Wynd House',
+ 'Greyfriars Kirkyard':'Greyfriars Kirkyard',
+ 'Greyfriars Bobby':'Greyfriars Bobby',
+ 'Royal Mile':'Royal Mile',
+ 'Victoria Street':'Victoria Street, Edinburgh',
+ 'Grassmarket':'Grassmarket',
+ 'Edinburgh Castle':'Edinburgh Castle',
+ 'George Square':'George Square, Edinburgh',
+ 'Scottish National Gallery':'Scottish National Gallery',
+ 'Stonehaven & Dunnottar Castle':'Dunnottar Castle',
+ 'Tour delle Highlands — GetYourGuide':'Scottish Highlands'
+};
+const photoHints={
+ 'Pickleback':'pickleback whisky shot',
+ 'Tesco':'Tesco supermarket Edinburgh',
+ 'Sainsbury’s':'Sainsburys supermarket Edinburgh',
+ 'Lidl':'Lidl supermarket Edinburgh',
+ 'M&S':'Marks and Spencer store Edinburgh',
+ 'Mosque Kitchen':'Mosque Kitchen Edinburgh',
+ 'Braw Brunch':'Braw Brunch Edinburgh',
+ 'Castle Café':'Scottish breakfast Edinburgh',
+ 'Pepe’s Piri Piri':'Piri piri chicken',
+ 'Pizza Posto':'Pizza Posto Edinburgh',
+ 'Truck Blu':'Neapolitan pizza Scotland',
+ 'Stonehaven & Dunnottar Castle':'Dunnottar Castle Stonehaven',
+ 'The Bay Fish & Chips':'Fish and chips Stonehaven',
+ 'Tour delle Highlands — GetYourGuide':'Scottish Highlands landscape',
+ 'Floral Clock':'Floral Clock Edinburgh',
+ 'The Elephant House':'Elephant House Edinburgh cafe',
+ 'Blackwell’s':'Blackwell bookshop Edinburgh',
+ 'Informatics Forum':'University of Edinburgh Informatics Forum',
+ 'Rockstar North':'Rockstar North Edinburgh building'
+};
+const illustrativeHints={
+ 'Pickleback':'whisky shot pickle',
+ 'Mosque Kitchen':'Indian curry plate',
+ 'Bertie’s Proper Fish & Chips':'fish and chips Scotland',
+ 'Pepe’s Piri Piri':'chicken barbecue food',
+ 'Braw Brunch':'breakfast plate Edinburgh',
+ 'Black Medicine Coffee':'coffee cup Edinburgh',
+ 'M&S':'supermarket Edinburgh',
+ 'Tesco':'supermarket Edinburgh',
+ 'Sainsbury’s':'supermarket Edinburgh',
+ 'Lidl':'supermarket Edinburgh',
+ 'Makars Mash Bar':'mashed potatoes Scottish food',
+ 'Castle Café':'full Scottish breakfast',
+ 'Pizza Posto':'pizza Margherita',
+ 'Truck Blu':'Neapolitan pizza',
+ 'The Bay Fish & Chips':'fish and chips',
+ 'Union Social Garden':'pub garden Edinburgh',
+ 'The Jolly Judge':'Edinburgh pub interior',
+ 'Frankenstein Bar':'Edinburgh pub interior'
+};
+const photoCache=new Map(),photoPromises=new Map();
+function isPhoto(info){return info&&/^https:\/\/upload\.wikimedia\.org\//.test(info.url)}
+async function wikiPhoto(p){
+  const title=wikiTitles[p.name];if(!title)return null;
+  const u=new URL('https://en.wikipedia.org/w/api.php');
+  Object.entries({action:'query',format:'json',origin:'*',prop:'pageimages',titles:title,pithumbsize:'960',pilicense:'free',redirects:'1'}).forEach(([k,v])=>u.searchParams.set(k,v));
+  const r=await fetch(u.toString());if(!r.ok)throw Error('Wikipedia');
+  const j=await r.json(),pg=Object.values(j.query?.pages||{}).find(x=>x.thumbnail?.source&&x.pageimage);
+  if(!pg)return null;
+  return {url:pg.thumbnail.source,source:'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(pg.pageimage.replace(/ /g,'_')),credit:'Wikimedia Commons (vedi autore e licenza)',illustrative:false};
+}
+async function commonsPhoto(term,illustrative){
+  const u=new URL('https://commons.wikimedia.org/w/api.php');
+  Object.entries({action:'query',format:'json',origin:'*',generator:'search',gsrsearch:term+' filetype:bitmap',gsrnamespace:'6',gsrlimit:'10',prop:'imageinfo',iiprop:'url|mime|size|extmetadata',iiurlwidth:'960'}).forEach(([k,v])=>u.searchParams.set(k,v));
+  const r=await fetch(u.toString());if(!r.ok)throw Error('Commons');
+  const j=await r.json();
+  const pages=Object.values(j.query?.pages||{}).sort((a,b)=>(a.index||99)-(b.index||99));
+  const candidates=pages.filter(pg=>{
+    const v=pg.imageinfo?.[0],name=pg.title||'';
+    return v&&v.width>=500&&v.height>=250&&/image\/(jpeg|png|webp)/.test(v.mime||'')&&!/logo|map|diagram|poster|vector|advert|screenshot|illustration|cartoon|icon|flag|trademark/i.test(name)
+  });
+  const pg=candidates[0];if(!pg)return null;
+  const v=pg.imageinfo[0];
+  const author=(v.extmetadata?.Artist?.value||'').replace(/<[^>]+>/g,' ').replace(/&[^;]+;/g,' ').replace(/\s+/g,' ').trim().slice(0,95);
+  const licence=(v.extmetadata?.LicenseShortName?.value||'licenza nella scheda Commons').replace(/<[^>]+>/g,'').slice(0,35);
+  return {url:v.thumburl||v.url,source:v.descriptionurl||('https://commons.wikimedia.org/wiki/'+encodeURIComponent(pg.title.replace(/ /g,'_'))),credit:(author?author+' · ':'')+licence+' · Wikimedia Commons',illustrative};
+}
+async function getPhoto(p){
+  if(photoCache.has(p.id))return photoCache.get(p.id);
+  if(photoPromises.has(p.id))return photoPromises.get(p.id);
+  const task=(async()=>{
+    let photo=null;
+    try{photo=await wikiPhoto(p)}catch{}
+    if(!isPhoto(photo)){try{photo=await commonsPhoto(photoHints[p.name]||p.name+' Edinburgh',false)}catch{}}
+    if(!isPhoto(photo)){
+      const generic=illustrativeHints[p.name]|| (p.category==='Pub & Birre'?'Edinburgh pub':p.category==='Caffè'?'coffee Edinburgh':p.category==='Pizza'?'pizza Scotland':p.category==='Cibo'?'Scottish food':p.category==='Supermercati'?'Edinburgh shops':'Edinburgh Scotland architecture');
+      try{photo=await commonsPhoto(generic,true)}catch{}
+    }
+    const value=isPhoto(photo)?photo:null;
+    photoCache.set(p.id,value);photoPromises.delete(p.id);return value;
+  })();photoPromises.set(p.id,task);return task;
+}
+function hydratePhotos(scope=document){
+  const nodes=Array.from(scope.querySelectorAll('[data-photo-id]'));
+  if(!nodes.length)return;
+  const load=el=>{
+    if(el.dataset.loading)return;
+    el.dataset.loading='1';
+    const p=places[Number(el.dataset.photoId)];
+    if(!p)return;
+    getPhoto(p).then(photo=>{
+      if(!el.isConnected)return;
+      if(!photo){el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>';return;}
+      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt=photo.illustrative?'Fotografia illustrativa':'Fotografia: '+p.name;
+      img.onerror=()=>{img.remove();el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>'};
+      img.src=photo.url;el.replaceChildren(img);
+      if(el.closest('.detail')){
+        const credit=el.closest('.detail').querySelector('#photo-credit');
+        if(credit){credit.replaceChildren();const a=document.createElement('a');a.href=photo.source;a.target='_blank';a.rel='noopener';a.textContent=photo.credit;credit.append(photo.illustrative?'Foto illustrativa · ':'Foto · ',a)}
+      }
+    });
+  };
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting){obs.unobserve(e.target);load(e.target)}}),{rootMargin:'360px'});
+    nodes.forEach(n=>obs.observe(n));
+  }else nodes.forEach(load);
+}
+const libraryScripts={
+ qrcode:'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js',
+ barcode:'https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js'
+};
+const scriptPromises={};
+function loadLibrary(name){
+  if(scriptPromises[name])return scriptPromises[name];
+  return scriptPromises[name]=new Promise((resolve,reject)=>{
+    const script=document.createElement('script');script.src=libraryScripts[name];script.onload=resolve;script.onerror=()=>reject(Error('Libreria non disponibile'));document.head.append(script);
+  });
+}
+function loyaltyCard(type){
+  const lidl=type==='lidl',value=lidl?'77440009234328364':'634004027611624888',name=lidl?'Lidl Plus':'Tesco Clubcard';
+  detail.innerHTML=`<div class="detailbody"><button class="back" onclick="closePlace()">← Indietro</button><h1 style="color:#293b30;font-size:31px">${name}</h1><div class="loyalty-view"><b>Mostrate questo codice alla cassa</b><div id="loyalty-graphic" style="min-height:180px;display:grid;place-items:center"><span class="photo-placeholder"></span></div><div class="loyalty-number">${lidl?'774 400 092 343 283 64':'634004 0276 1162 4888'}</div><p id="loyalty-status" class="photo-credit">Ingrandite lo schermo per facilitare la lettura.</p></div></div>`;
+  detail.classList.remove('hidden');document.body.style.overflow='hidden';
+  const host=document.getElementById('loyalty-graphic');
+  loadLibrary(lidl?'qrcode':'barcode').then(()=>{
+    if(!host.isConnected)return;host.replaceChildren();
+    if(lidl){new QRCode(host,{text:value,width:290,height:290,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}
+    else{const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');host.append(svg);JsBarcode(svg,value,{format:'CODE128',displayValue:false,width:2,height:115,margin:8,lineColor:'#000'})}
+  }).catch(()=>{if(host.isConnected){host.textContent='Codice grafico non disponibile: utilizzate il numero qui sotto.';document.getElementById('loyalty-status').textContent='Serve una connessione Internet per generare il codice grafico.'}});
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function star(p){return `<button class="star ${saved.includes(p.id)?'on':''}" aria-label="${saved.includes(p.id)?'Rimuovi':'Aggiungi'} ${esc(p.name)} dai preferiti" onclick="toggle(${p.id})">${saved.includes(p.id)?'★':'☆'}</button>`}function card(p){return `<article class="card"><button class="thumb photo-thumb" data-photo-id="${p.id}" onclick="openPlace(${p.id})" aria-label="Apri ${esc(p.name)}"><span class="photo-placeholder"></span></button><button class="cardmain" onclick="openPlace(${p.id})"><strong>${esc(p.name)}</strong><small>${p.type==='mild'?'Mild':p.type==='spicy'?'Spicy':esc(p.category)} · ${esc(p.category)}</small></button>${star(p)}</article>`}
+function cards(a){return a.length?`<div class="cards">${a.map(card).join('')}</div>`:'<div class="empty">Nessun posto trovato.</div>'}
+function mix(a){let m=a.filter(p=>p.type==='mild').length,s=a.filter(p=>p.type==='spicy').length,t=m+s,mp=t?Math.round(m/t*100):0;return `<div class="mix"><div class="row"><b>YOUR EDINBURGH MIX</b><span>🌿🌶️</span></div><div class="stats"><div class="stat">🌿 Mildness<strong>${mp}%</strong></div><div class="stat sp">🌶️ Spiciness<strong>${t?100-mp:0}%</strong></div></div><div class="bar"><div style="width:${mp}%"></div></div><p style="font-size:12px;color:#cbd7ce">${t} tappe Mild/Spicy nel mix</p></div>`}function nav(){document.getElementById('nav').innerHTML=[['home','⌂','Home'],['explore','⌕','Esplora'],['favorites','☆','Preferiti'],['ale','⌖','Ale’s Path']].map(([id,ico,label])=>`<button class="${page===id?'active':''}" onclick="go('${id}')"><b>${ico}</b>${label}</button>`).join('')}
+let phase='Tutta la giornata';
+function go(p){page=p;filter='Tutti';phase='Tutta la giornata';query='';render();window.scrollTo(0,0)}
+function section(p,title){page=p;filter=title;phase='Tutta la giornata';query='';render();window.scrollTo(0,0)}
+function phaseSelect(next){phase=next;updateResults();renderPhaseControls()}
+function filterSelect(next){filter=next;updateResults();renderFilterControls()}
+function renderPhaseControls(){document.querySelectorAll('[data-phase]').forEach(el=>{const on=el.dataset.phase===phase;el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on))})}
+function renderFilterControls(){document.querySelectorAll('[data-filter]').forEach(el=>{const on=el.dataset.filter===filter;el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on))})}
+function filteredPlaces(){return places.filter(p=>p.type!=='personal'&&(filter==='Tutti'||(filter==='Mild'&&p.type==='mild')||(filter==='Spicy'&&p.type==='spicy')||p.category===filter)).filter(p=>(p.name+' '+p.category+' '+p.description).toLowerCase().includes(query.toLowerCase()))}
+function exploreResults(){
+  const selected=filteredPlaces();
+  if(phase!=='Tutta la giornata'){const subset=selected.filter(p=>phasesFor(p).includes(phase));return `<div class="explore-count">${subset.length} posti · ${phase.toLowerCase()}</div>${cards(subset)}`}
+  const groups=dayparts.map(label=>{
+    const a=selected.filter(p=>phasesFor(p).includes(label));
+    return a.length?`<section><h3 class="phase-title">${label}<small>${a.length} posti</small></h3>${cards(a)}</section>`:''
+  }).join('');
+  return groups||'<div class="empty">Nessun posto trovato.</div>';
+}
+function render(){
+ nav();
+ if(page==='home'){
+  app.innerHTML=`<div class="hero-grid"><button class="hero" onclick="section('explore','Mild')">🌿<strong>Mild</strong><span>Classici, passeggiate e posti tranquilli. ↗</span></button><button class="hero spicy" onclick="section('explore','Spicy')">🌶️<strong>Spicy</strong><span>Posti strani, cibo e qualche deviazione. ↗</span></button></div><button class="strip" onclick="go('ale')"><strong>📍 Ale’s Path →</strong><small>Quello che farei io, se fossi lì.</small></button><h2 class="section-title">Le altre cose</h2><div class="extras"><button class="extra" onclick="section('explore','Pizza')">🍕 Pizza, anche se weird<small>Due opzioni, zero giudizi</small></button><button class="extra" onclick="section('explore','Fuori da Edimburgo')">🏔️ Fuori da Edimburgo<small>Gite e idee</small></button><button class="extra" onclick="page='loyalty';render()">💳 Loyalty Cards<small>Lidl Plus e Tesco Clubcard</small></button><button class="extra" onclick="page='notes';render()">⚠️ Survival Notes<small>Consigli prima di partire</small></button></div><h2 class="section-title">Qualche idea</h2>${cards([places[1],places[6],places[12],places[13]])}`;
+ }else if(page==='explore'){
+  const options=['Tutti','Mild','Spicy','Cibo','Pub & Birre','Passeggiate','Musei','Supermercati','Librerie','Caffè','Pizza','Fuori da Edimburgo'];
+  app.innerHTML=`<h2 class="section-title">Esplora Edimburgo</h2><p class="phase-hint">Scegliete quando uscire, poi filtrate per genere di posto. Le fasce sono suggerimenti, non orari di apertura.</p><input class="search" placeholder="Cerca un posto, una pizza, un pub…" aria-label="Cerca" value="${esc(query)}" oninput="query=this.value;updateResults()"><div class="phase-tab-group"><span class="phase-label">Momento della giornata</span><div class="toolbar" id="phase-controls">${['Tutta la giornata',...dayparts].map(o=>`<button data-phase="${o}" aria-pressed="${phase===o}" class="chip ${phase===o?'active':''}" onclick="phaseSelect('${o}')">${o}</button>`).join('')}</div></div><div class="phase-tab-group"><span class="phase-label">Cosa cercate</span><div class="toolbar" id="filter-controls">${options.map(o=>`<button data-filter="${esc(o)}" aria-pressed="${filter===o}" class="chip ${filter===o?'active':''}" onclick="filterSelect('${esc(o)}')">${esc(o)}</button>`).join('')}</div></div><div id="results">${exploreResults()}</div>`;
+ }else if(page==='favorites'){
+  const a=places.filter(p=>saved.includes(p.id));app.innerHTML=`<h2 class="section-title">⭐ Preferiti</h2><p>Il vostro giro, deciso da voi.</p>${mix(a)}${cards(a)}`;
+ }else if(page==='ale'){
+  app.innerHTML=`<h2 class="section-title">📍 Ale’s Path</h2><p>Quello che farei io, se fossi lì. La selezione è fissa; voi potete comunque salvarvi i posti con la stellina.</p>${mix(ale)}${cards(ale)}`;
+ }else if(page==='loyalty'){
+  app.innerHTML=`<h2 class="section-title">Loyalty Cards</h2><p>Aprite la tessera che vi serve e mostrate il codice a schermo intero alla cassa.</p><button class="loyalty-tile" onclick="loyaltyCard('lidl')"><span><strong>Lidl Plus</strong><small>QR code · 774 400 092 343 283 64</small></span><span aria-hidden="true">↗</span></button><button class="loyalty-tile" onclick="loyaltyCard('tesco')"><span><strong>Tesco Clubcard</strong><small>Codice a barre · 634004 0276 1162 4888</small></span><span aria-hidden="true">↗</span></button><p class="photo-credit">I codici tessera sono visibili pubblicamente su questo sito.</p>`;
+ }else if(page==='notes'){
+  app.innerHTML=`<h2 class="section-title">⚠️ Survival Notes</h2><div class="notice">🌬️ <b>Vento e pioggia.</b> Ad Arthur’s Seat servono scarpe decenti; con terreno bagnato fate attenzione.</div><div class="notice">🥪 <b>Meal Deal.</b> Da Tesco e Sainsbury’s scegliete un main, uno snack e una bevanda tra i prodotti inclusi nella promozione.</div><div class="notice">🐕 <b>Greyfriars Bobby.</b> Il naso lucido non è un invito a strofinarlo.</div><div class="notice">🥔 <b>Makars.</b> Provate a chiedere direttamente un tavolo: potrebbe esserci da aspettare.</div><div class="notice">🗼 <b>Scott Monument.</b> I gradini per salire sono stretti.</div>`;
+ }else{page='home';render();return}
+ hydratePhotos(app);
+}
+function updateResults(){const container=document.getElementById('results');if(!container)return;container.innerHTML=exploreResults();hydratePhotos(container)}
+function toggle(id){saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];localStorage.setItem('edinburgh-stars',JSON.stringify(saved));render()}
+function openPlace(id){
+ const p=places[id];
+ detail.innerHTML=`<div class="detailhero photo-thumb" data-photo-id="${p.id}"><span class="photo-placeholder"></span></div><div class="detailbody"><button class="back" onclick="closePlace()">← Indietro</button><div class="row"><small>${p.type==='mild'?'MILD':p.type==='spicy'?'SPICY':esc(p.category)} · ${phasesFor(p).join(' / ')}</small>${star(p)}</div><h1 style="color:#293b30;font-size:33px">${esc(p.name)}</h1><p style="font-size:17px;line-height:1.55">${esc(p.description)}</p>${p.warning?`<div class="notice">⚠️ ${esc(p.warning)}</div>`:''}<a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' Edinburgh Scotland')}">↗ Apri su Google Maps</a><p id="photo-credit" class="photo-credit">Immagine da Wikimedia Commons, dove disponibile.</p></div>`;
+ detail.classList.remove('hidden');document.body.style.overflow='hidden';hydratePhotos(detail);
+}
+function closePlace(){detail.classList.add('hidden');document.body.style.overflow='';render()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlace()});render();
 </script></body></html>
