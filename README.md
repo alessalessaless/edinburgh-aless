@@ -1,10 +1,10 @@
-# Edinburgh · Mild or Spicy?
+# Edinburgh
 
 Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 
 ## Homepage
 
-Il titolo visibile del sito è **Edinburgh**; per non rompere i link la repository mantiene il nome `edinburgh-aless`.
+Il titolo visibile del sito è **Edinburgh**, con sottotitolo «guida assolutamente non richiesta ma avevo un'ora libera e chtgpt plus»; per non rompere i link la repository mantiene il nome `edinburgh-aless`.
 
 Accanto a **Qualche idea**, il pulsante **Randomizza scelte** sostituisce le quattro card con nuovi suggerimenti casuali, senza ripetere immediatamente quelli già visibili.
 
@@ -64,9 +64,16 @@ Le carte **Lidl Plus** e **Tesco Clubcard** ora mostrano solo il numero e un pul
 
 **Indicazioni alle destinatarie:** passate tra la moschea e il locale sulla strada, mantenendo la moschea alla vostra sinistra; scendete le scale e girate a destra. La cucina che consigliamo è sul retro, nel cortile. Le indicazioni derivano dall'esperienza personale del curatore, corroborate da [descrizioni dell'ingresso su Tripadvisor](https://www.tripadvisor.co.uk/LocationPhotoDirectLink-g186525-d8551725-i157409285-The_Original_Mosque_Kitchen_Cafe-Edinburgh_Scotland.html).
 
-**Orari:** le fonti su Potterrow non coincidono (chiusure indicate tra 19:30 e 22:00; apertura generalmente alle 11:30). La scheda dichiara l'incertezza e collega alla [pagina del locale corretto](https://www.tripadvisor.co.uk/Restaurant_Review-g186525-d8551725-Reviews-The_Original_Mosque_Kitchen_Cafe-Edinburgh_Scotland.html). I precedenti 11:30–22:00 erano stati ricavati erroneamente dal sito del ristorante su Nicolson Square.
+**Orari:** indicativamente 11:30–22:00 per Potterrow. La chiusura alle 22:00 è riportata dal ricordo diretto dell'autore; le fonti online non sono concordi e la scheda chiarisce che non si tratta degli orari del ristorante di Nicolson Square. Per informazioni esterne, [pagina del locale corretto](https://www.tripadvisor.co.uk/Restaurant_Review-g186525-d8551725-Reviews-The_Original_Mosque_Kitchen_Cafe-Edinburgh_Scotland.html).
 
 **Foto:** [Kim Traynor, Edinburgh Mosque kitchen, 2009](https://commons.wikimedia.org/wiki/File:Edinburgh_Mosque_kitchen_-_geograph.org.uk_-_1315877.jpg), CC BY-SA 2.0: la didascalia Commons identifica esplicitamente la cucina dietro la moschea.
+
+## Ottimizzazione mobile
+
+- Il pulsante **Randomizza scelte** utilizza un'estrazione parziale di quattro luoghi e raggruppa i tocchi molto ravvicinati in un solo aggiornamento per fotogramma; `touch-action: manipulation` previene lo zoom da doppio tocco sui pulsanti senza disabilitare il pinch-to-zoom.
+- I **preferiti** vengono aggiornati direttamente sulle stelle, senza ridisegnare la pagina e senza ricaricare le fotografie; anche chiudere il dettaglio non ricrea più le card. Nella vista Preferiti, la card rimossa e le statistiche vengono aggiornate localmente.
+- **Fotografie:** un unico `IntersectionObserver` per tutte le card, ripulito quando cambia il contenuto; immagini Wikimedia Commons a 480 px per le miniature (960 px solo nei dettagli), foto WebP fornite per la guida invariate. Le risorse non vengono generate o ricercate automaticamente.
+- Eliminati blocchi JavaScript di ricerca immagini non più utilizzati (circa 5 KB). Sono rimaste **46 schede** e non sono cambiati testi o percorsi, fatta eccezione per le due modifiche richieste a sottotitolo e orari Mosque Kitchen.
 
 ## Verifiche finali
 
