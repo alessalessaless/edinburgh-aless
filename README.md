@@ -10,22 +10,21 @@ Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 - Dove la sede non è specificata, gli orari sono discordanti o manca una fonte, la card indica che serve un controllo. Ultimo controllo manuale: **15 ottobre 2026**. Nessun indicatore “Aperto ora” viene calcolato automaticamente.
 - Preferiti salvati sul dispositivo nel browser.
 
-## Fotografie selezionate
+## Fotografie nella guida
 
-La guida contiene **27 fotografie di luoghi reali selezionate manualmente**, tra cui The Meadows, Arthur's Seat, Rockstar North, Mosque Kitchen, The Last Drop, National Museum of Scotland, Scott Monument, Scottish Parliament, Calton Hill, The Jolly Judge, Dean Village, Princes Street Gardens, Floral Clock, Portobello Beach, Cables Wynd House, Greyfriars Kirkyard, Greyfriars Bobby, Royal Mile, Victoria Street, Grassmarket, Edinburgh Castle, George Square, Frankenstein Bar, Scottish National Gallery, Dunnottar Castle e Informatics Forum.
+Le 46 schede hanno ora **45 immagini associate**: 27 fotografie selezionate da Wikimedia Commons e **18 immagini inviate direttamente per questa guida**, salvate in `assets/photos/*.webp` e ottimizzate per il caricamento su smartphone.
 
-Ogni immagine viene caricata dal file identificato di **Wikimedia Commons**, tramite la funzione `Special:Redirect/file`, senza una ricerca casuale. Nel dettaglio sono presenti autore, tipo di licenza e collegamento alla scheda dell'immagine. Le foto delle card sono anteprime ritagliate visivamente per il layout, non foto generiche di altri locali.
+Le immagini ricevute comprendono Elephant House (30 Victoria Street), Armstrongs Cockburn Street, Black Medicine Coffee, Bertie's Fish & Chips, Braw Brunch, Makars Mash Bar, Pepe's Piri Piri, Castle Café, Pizza Posto, Pickleback, Tesco, M&S, Blackwell's, Sainsbury's, Lidl, Union Social Garden, The Bay Fish & Chips e un panorama delle Highlands. Dove l'immagine è un logo, viene presentata come logo, senza ritaglio.
 
-Per gli **altri 19 elementi**, dove una foto riutilizzabile non è stata individuata o la voce non rappresenta un luogo specifico (ad esempio Pickleback oppure catene di supermercati senza una filiale indicata), il sito non mostra immagini fuorvianti. Le schede dei luoghi hanno un collegamento a Google Maps per consultare le immagini disponibili.
+Un'altra foto inviata per **Truck Blu** raffigura invece un camion con l'insegna **Mr Wood Fire**. Il file è conservato come `assets/photos/mr-woodfire-truck-unverified.webp`, ma **non è mostrato nella card di Truck Blu** per evitare un'attribuzione sbagliata, finché la corrispondenza non sarà confermata.
 
-**Non sono state scaricate o ripubblicate fotografie da Google Maps.** Tutte le immagini della selezione sono legate alle rispettive pagine Wikimedia Commons, in modo da rispettare le licenze dei fotografi.
-
+Le fotografie già selezionate da Wikimedia Commons mantengono nella scheda il collegamento alla fonte e l'indicazione di autore/licenza. Le immagini inviate per la guida sono contrassegnate come tali, senza attribuire licenze che non conosciamo.
 
 ## Aggiornamenti del 15 ottobre 2026
 
 - La voce precedente “The Elephant House” si riferisce ora a **The Elephant House Café, 30 Victoria Street** (apertura 10:00–18:00, ogni giorno, secondo [la fonte ufficiale](https://elephanthousecafe.com/contact-us/)).
 - Nella sede di Victoria Street si trova il tavolo usato da J.K. Rowling. La scrittura di parte dei primi romanzi di Harry Potter avvenne nell'**originale locale di 21 George IV Bridge**: non attribuiamo questo fatto alla sede nuova.
-- Non mostriamo per errore fotografie della vecchia sede nell'attuale scheda di Victoria Street; la relativa foto resta da selezionare.
+- Non mostriamo per errore fotografie della vecchia sede nell'attuale scheda di Victoria Street; è stata ora inserita una foto fornita per la guida.
 - Il filtro **Post cena** è stato rimosso e **Birrette** è confluito in **Pub**. Il castello è consigliato anche di sera per la vista dall'esterno, ed è incluso in Ale’s Path. Le aperture del castello non equivalgono all'accessibilità serale della spianata.
 
 ## Vestiario · Armstrongs & Son Vintage

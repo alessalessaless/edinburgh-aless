@@ -288,7 +288,84 @@ const curatedPhotos={
   "license": "CC BY-SA 2.0"
  }
 };
+// Foto specifiche fornite per la guida: nessun caricamento casuale di immagini.
+const contributedPhotos={
+ "The Elephant House Café · Victoria Street": {
+  "file": "elephant-house-victoria-street.webp",
+  "kind": "photo"
+ },
+ "Armstrongs & Son Vintage · Cockburn Street": {
+  "file": "armstrongs-cockburn-street.webp",
+  "kind": "photo"
+ },
+ "Black Medicine Coffee": {
+  "file": "black-medicine-coffee.webp",
+  "kind": "photo"
+ },
+ "Bertie’s Proper Fish & Chips": {
+  "file": "berties-proper-fish-chips.webp",
+  "kind": "photo"
+ },
+ "Braw Brunch": {
+  "file": "braw-brunch.webp",
+  "kind": "photo"
+ },
+ "Makars Mash Bar": {
+  "file": "makars-mash-bar.webp",
+  "kind": "photo"
+ },
+ "Pepe’s Piri Piri": {
+  "file": "pepes-piri-piri.webp",
+  "kind": "logo"
+ },
+ "Castle Café": {
+  "file": "castle-cafe.webp",
+  "kind": "photo"
+ },
+ "Pizza Posto": {
+  "file": "pizza-posto.webp",
+  "kind": "photo"
+ },
+ "Pickleback": {
+  "file": "pickleback.webp",
+  "kind": "photo"
+ },
+ "Tesco": {
+  "file": "tesco.webp",
+  "kind": "logo"
+ },
+ "M&S": {
+  "file": "marks-and-spencer.webp",
+  "kind": "photo"
+ },
+ "Blackwell’s": {
+  "file": "blackwells.webp",
+  "kind": "photo"
+ },
+ "Sainsbury’s": {
+  "file": "sainsburys.webp",
+  "kind": "photo"
+ },
+ "Lidl": {
+  "file": "lidl.webp",
+  "kind": "photo"
+ },
+ "Union Social Garden": {
+  "file": "union-social-garden.webp",
+  "kind": "photo"
+ },
+ "The Bay Fish & Chips": {
+  "file": "the-bay-fish-and-chips.webp",
+  "kind": "photo"
+ },
+ "Tour delle Highlands — GetYourGuide": {
+  "file": "highlands.webp",
+  "kind": "photo"
+ }
+};
 function curatedPhoto(p){
+ const custom=contributedPhotos[p.name];
+ if(custom){const url='./assets/photos/'+custom.file;return {url,source:url,credit:'Immagine fornita per la guida',illustrative:false,curated:true,kind:custom.kind};}
  const entry=curatedPhotos[p.name];if(!entry)return null;
  const name=entry.file.replace(/ /g,'_');
  const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(name);
@@ -342,7 +419,7 @@ function hydratePhotos(scope=document){
     getPhoto(p).then(photo=>{
       if(!el.isConnected)return;
       if(!photo){el.innerHTML=p.name==='Pickleback'?'<span class="photo-unavailable">Nessuna foto della bevanda selezionata</span>':'<span class="photo-unavailable">Foto da scegliere<br><small>Altre immagini su Maps ↗</small></span>';return;}
-      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt=photo.illustrative?'Fotografia illustrativa':'Fotografia: '+p.name;
+      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt=photo.kind==='logo'?'Logo: '+p.name:photo.illustrative?'Fotografia illustrativa':'Fotografia: '+p.name;if(photo.kind==='logo'){img.style.objectFit='contain';img.style.backgroundColor='#fff';}
       img.onerror=()=>{img.remove();el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>'};
       img.src=photo.url;el.replaceChildren(img);if(photo.illustrative){const tag=document.createElement('span');tag.className='photo-illustrative-label';tag.textContent='Foto illustrativa';el.append(tag)}
       if(el.closest('.detail')){
