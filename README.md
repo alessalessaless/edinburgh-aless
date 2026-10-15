@@ -12,11 +12,11 @@ Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 
 ## Fotografie nella guida
 
-Le 46 schede hanno ora **45 immagini associate**: 27 fotografie selezionate da Wikimedia Commons e **18 immagini inviate direttamente per questa guida**, salvate in `assets/photos/*.webp` e ottimizzate per il caricamento su smartphone.
+Le 46 schede hanno ora **46 immagini associate**: 27 fotografie selezionate da Wikimedia Commons e **19 immagini inviate direttamente per questa guida**, salvate in `assets/photos/*.webp` e ottimizzate per il caricamento su smartphone.
 
 Le immagini ricevute comprendono Elephant House (30 Victoria Street), Armstrongs Cockburn Street, Black Medicine Coffee, Bertie's Fish & Chips, Braw Brunch, Makars Mash Bar, Pepe's Piri Piri, Castle Café, Pizza Posto, Pickleback, Tesco, M&S, Blackwell's, Sainsbury's, Lidl, Union Social Garden, The Bay Fish & Chips e un panorama delle Highlands. Dove l'immagine è un logo, viene presentata come logo, senza ritaglio.
 
-Un'altra foto inviata per **Truck Blu** raffigura invece un camion con l'insegna **Mr Wood Fire**. Il file è conservato come `assets/photos/mr-woodfire-truck-unverified.webp`, ma **non è mostrato nella card di Truck Blu** per evitare un'attribuzione sbagliata, finché la corrispondenza non sarà confermata.
+La scheda del food truck è stata rinominata **Mr Wood Fire** (in precedenza "Truck Blu", secondo la conferma dell'autore della guida). La foto caricata `assets/photos/mr-woodfire-truck-unverified.webp` è ora visualizzata nella scheda. Il nome del file resta invariato per evitare upload duplicati.
 
 Le fotografie già selezionate da Wikimedia Commons mantengono nella scheda il collegamento alla fonte e l'indicazione di autore/licenza. Le immagini inviate per la guida sono contrassegnate come tali, senza attribuire licenze che non conosciamo.
 
