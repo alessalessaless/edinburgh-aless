@@ -152,6 +152,151 @@ const illustrativeHints={
  'The Jolly Judge':'Edinburgh pub interior',
  'Frankenstein Bar':'Edinburgh pub interior'
 };
+// Fotografie selezionate manualmente: ogni nome è associato a un file reale di Wikimedia Commons.
+const curatedPhotos={
+ "The Meadows": {
+  "file": "The Meadows, Edinburgh - geograph.org.uk - 4506205.jpg",
+  "author": "Graham Robson",
+  "license": "CC BY-SA 2.0"
+ },
+ "Arthur’s Seat": {
+  "file": "Arthurs seat edinburgh.jpg",
+  "author": "Tilmandralle",
+  "license": "pubblico dominio"
+ },
+ "Rockstar North": {
+  "file": "Rockstar North HQ, Edinburgh, Scotland.jpg",
+  "author": "Thomas Nugent",
+  "license": "CC BY-SA 2.0"
+ },
+ "Mosque Kitchen": {
+  "file": "Edinburgh Mosque kitchen - geograph.org.uk - 1315877.jpg",
+  "author": "Kim Traynor",
+  "license": "CC BY-SA 2.0"
+ },
+ "The Last Drop": {
+  "file": "The Last Drop, Grassmarket - geograph.org.uk - 2024916.jpg",
+  "author": "Kim Traynor",
+  "license": "CC BY-SA 2.0"
+ },
+ "National Museum of Scotland": {
+  "file": "National Museum of Scotland (48071097006).jpg",
+  "author": "Mike McBey",
+  "license": "CC BY 2.0"
+ },
+ "Scott Monument": {
+  "file": "The Scott Monument, Edinburgh.jpg",
+  "author": "Gregg M. Erickson",
+  "license": "CC BY 3.0"
+ },
+ "Scottish Parliament": {
+  "file": "ScottishParliamentBuildingedinburghscotland.jpg",
+  "author": "Paasikivi",
+  "license": "CC BY-SA 3.0"
+ },
+ "Calton Hill": {
+  "file": "Calton Hill Edinburgh.jpg",
+  "author": "Karl1587",
+  "license": "pubblico dominio"
+ },
+ "The Jolly Judge": {
+  "file": "Jolly Judge Pub, Edinburgh.jpg",
+  "author": "Subhashish Panigrahi",
+  "license": "CC BY-SA 4.0"
+ },
+ "Dean Village": {
+  "file": "Dean Village.jpg",
+  "author": "Richard Webb",
+  "license": "CC BY-SA 2.0"
+ },
+ "Princes Street Gardens": {
+  "file": "Princes Street Gardens Edinburgh.jpg",
+  "author": "Karl1587",
+  "license": "pubblico dominio"
+ },
+ "Floral Clock": {
+  "file": "Floral Clock 2026 Edinburgh - geograph.org.uk - 8372094.jpg",
+  "author": "Jennifer Petrie",
+  "license": "CC BY-SA 2.0"
+ },
+ "Portobello Beach": {
+  "file": "Portobello beach, Edinburgh - geograph.org.uk - 4202105.jpg",
+  "author": "Paul Harrop",
+  "license": "CC BY-SA 2.0"
+ },
+ "Cables Wynd House (Banana Flats)": {
+  "file": "Cables Wynd House - geograph.org.uk - 6931575.jpg",
+  "author": "Richard Webb",
+  "license": "CC BY-SA 2.0"
+ },
+ "Greyfriars Kirkyard": {
+  "file": "Greyfriars Kirkyard, Edinburgh.JPG",
+  "author": "Kim Traynor",
+  "license": "CC BY-SA 3.0"
+ },
+ "Greyfriars Bobby": {
+  "file": "Greyfriars Bobby Statue.jpg",
+  "author": "Tharnton345",
+  "license": "pubblico dominio"
+ },
+ "Royal Mile": {
+  "file": "Royal mile.JPG",
+  "author": "Zigsfy",
+  "license": "CC BY 3.0"
+ },
+ "Victoria Street": {
+  "file": "The colourful Victoria Street in Edinburgh - geograph.org.uk - 8247813.jpg",
+  "author": "Iain Lees",
+  "license": "CC BY-SA 2.0"
+ },
+ "Grassmarket": {
+  "file": "Grassmarket Square, Old Town Edinburgh, Scotland.jpg",
+  "author": "Kalisa66",
+  "license": "CC0"
+ },
+ "Edinburgh Castle": {
+  "file": "Edinburgh castle.jpg",
+  "author": "Tilmandralle",
+  "license": "pubblico dominio"
+ },
+ "George Square": {
+  "file": "George Square Edinburgh buildings.jpg",
+  "author": "Arcaist",
+  "license": "CC BY-SA 4.0"
+ },
+ "Frankenstein Bar": {
+  "file": "Frankenstein Pub - geograph.org.uk - 2427453.jpg",
+  "author": "N Chadwick",
+  "license": "CC BY-SA 2.0"
+ },
+ "Scottish National Gallery": {
+  "file": "National Gallery of Scotland, the Mound Edinburgh.jpg",
+  "author": "Kim Traynor",
+  "license": "CC BY-SA 3.0"
+ },
+ "The Elephant House": {
+  "file": "Elephant House Front, Edinburgh, Scotland.jpg",
+  "author": "Ken Eckert",
+  "license": "CC BY-SA (vedi scheda)"
+ },
+ "Stonehaven & Dunnottar Castle": {
+  "file": "Dunnottar Castle, Stonehaven, Aberdeenshire.jpg",
+  "author": "Idealchimp",
+  "license": "Licenza libera (vedi scheda)"
+ },
+ "Informatics Forum": {
+  "file": "Informatics Forum, Edinburgh (3534312932).jpg",
+  "author": "Joe Bain",
+  "license": "CC BY 2.0"
+ }
+};
+function curatedPhoto(p){
+ const entry=curatedPhotos[p.name];if(!entry)return null;
+ const name=entry.file.replace(/ /g,'_');
+ const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(name);
+ const url='https://commons.wikimedia.org/wiki/Special:Redirect/file/'+encodeURIComponent(name)+'?width=960';
+ return {url,source,credit:entry.author+' · '+entry.license+' · Wikimedia Commons',illustrative:false,curated:true};
+}
 const photoCache=new Map(),photoPromises=new Map();
 function isPhoto(info){return info&&/^https:\/\/upload\.wikimedia\.org\//.test(info.url)}
 async function wikiPhoto(p){
@@ -182,19 +327,11 @@ async function commonsPhoto(term,illustrative,expectedName){
   return {url:v.thumburl||v.url,source:v.descriptionurl||('https://commons.wikimedia.org/wiki/'+encodeURIComponent(pg.title.replace(/ /g,'_'))),credit:(author?author+' · ':'')+licence+' · Wikimedia Commons',illustrative};
 }
 async function getPhoto(p){
-  if(photoCache.has(p.id))return photoCache.get(p.id);
-  if(photoPromises.has(p.id))return photoPromises.get(p.id);
-  const task=(async()=>{
-    let photo=null;
-    try{photo=await wikiPhoto(p)}catch{}
-    if(!isPhoto(photo)){try{photo=await commonsPhoto(p.name+' Edinburgh',false,p.name)}catch{}}
-    if(!isPhoto(photo)){
-      const generic=illustrativeHints[p.name]|| (p.category==='Pub & Birre'?'Edinburgh pub':p.category==='Caffè'?'coffee Edinburgh':p.category==='Pizza'?'pizza Scotland':p.category==='Cibo'?'Scottish food':p.category==='Supermercati'?'Edinburgh shops':'Edinburgh Scotland architecture');
-      try{photo=await commonsPhoto(generic,true)}catch{}
-    }
-    const value=isPhoto(photo)?photo:null;
-    photoCache.set(p.id,value);photoPromises.delete(p.id);return value;
-  })();photoPromises.set(p.id,task);return task;
+ if(photoCache.has(p.id))return photoCache.get(p.id);
+ // Nessuna ricerca casuale: mostriamo solo foto dei luoghi selezionate e attribuite.
+ const selected=curatedPhoto(p);
+ photoCache.set(p.id,selected);
+ return selected;
 }
 function hydratePhotos(scope=document){
   const nodes=Array.from(scope.querySelectorAll('[data-photo-id]'));
@@ -206,7 +343,7 @@ function hydratePhotos(scope=document){
     if(!p)return;
     getPhoto(p).then(photo=>{
       if(!el.isConnected)return;
-      if(!photo){el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>';return;}
+      if(!photo){el.innerHTML='<span class="photo-unavailable">Foto da scegliere<br><small>Altre immagini su Maps ↗</small></span>';return;}
       const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt=photo.illustrative?'Fotografia illustrativa':'Fotografia: '+p.name;
       img.onerror=()=>{img.remove();el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>'};
       img.src=photo.url;el.replaceChildren(img);if(photo.illustrative){const tag=document.createElement('span');tag.className='photo-illustrative-label';tag.textContent='Foto illustrativa';el.append(tag)}
