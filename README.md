@@ -58,6 +58,16 @@ Indirizzo atteso: https://alessalessaless.github.io/edinburgh-aless/
 
 Le carte **Lidl Plus** e **Tesco Clubcard** ora mostrano solo il numero e un pulsante **Copia codice** (con tentativo di copia negli appunti e soluzione alternativa per browser meno recenti). Non vengono più generati QR code o codici a barre. Sotto ogni numero c'è un collegamento **Aggiungi su Klarna**, con logo Klarna, che apre [la pagina ufficiale dell'app](https://www.klarna.com/it/klarna-app/). **Non esiste integrazione tra il sito e Klarna**: è necessario copiare il numero e incollarlo manualmente nell'app. I numeri delle carte restano pubblicamente visibili nel codice HTML della repository.
 
+## The Original Mosque Kitchen & Café: ingresso corretto
+
+**Indirizzo:** 50 Potterrow, Edinburgh EH8 9BT (cortile della Edinburgh Central Mosque). Non confonderlo con **The Mosque Kitchen**, 31–33 Nicolson Square: sono due ristoranti distinti.
+
+**Indicazioni alle destinatarie:** passate tra la moschea e il locale sulla strada, mantenendo la moschea alla vostra sinistra; scendete le scale e girate a destra. La cucina che consigliamo è sul retro, nel cortile. Le indicazioni derivano dall'esperienza personale del curatore, corroborate da [descrizioni dell'ingresso su Tripadvisor](https://www.tripadvisor.co.uk/LocationPhotoDirectLink-g186525-d8551725-i157409285-The_Original_Mosque_Kitchen_Cafe-Edinburgh_Scotland.html).
+
+**Orari:** le fonti su Potterrow non coincidono (chiusure indicate tra 19:30 e 22:00; apertura generalmente alle 11:30). La scheda dichiara l'incertezza e collega alla [pagina del locale corretto](https://www.tripadvisor.co.uk/Restaurant_Review-g186525-d8551725-Reviews-The_Original_Mosque_Kitchen_Cafe-Edinburgh_Scotland.html). I precedenti 11:30–22:00 erano stati ricavati erroneamente dal sito del ristorante su Nicolson Square.
+
+**Foto:** [Kim Traynor, Edinburgh Mosque kitchen, 2009](https://commons.wikimedia.org/wiki/File:Edinburgh_Mosque_kitchen_-_geograph.org.uk_-_1315877.jpg), CC BY-SA 2.0: la didascalia Commons identifica esplicitamente la cucina dietro la moschea.
+
 ## Verifiche finali
 
 Controllare da telefono fotografie e pulsanti di copia delle tessere, e verificare in prossimità della visita gli orari, gli eventuali cambiamenti di sede e le chiusure eccezionali. Le fotografie e i dati dei luoghi dipendono anche da servizi esterni.
