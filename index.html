@@ -118,70 +118,7 @@ function groupedByPhase(a){
 }
 function aleResults(){return groupedByPhase(ale);}
 
-const wikiTitles={
- 'The Meadows':'The Meadows (Edinburgh)',
- 'Arthur’s Seat':"Arthur's Seat",
- 'National Museum of Scotland':'National Museum of Scotland',
- 'Scott Monument':'Scott Monument',
- 'Scottish Parliament':'Scottish Parliament Building',
- 'Calton Hill':'Calton Hill',
- 'Dean Village':'Dean Village',
- 'Princes Street Gardens':'Princes Street Gardens',
- 'Portobello Beach':'Portobello, Edinburgh',
- 'Cables Wynd House (Banana Flats)':'Cables Wynd House',
- 'Greyfriars Kirkyard':'Greyfriars Kirkyard',
- 'Greyfriars Bobby':'Greyfriars Bobby',
- 'Royal Mile':'Royal Mile',
- 'Victoria Street':'Victoria Street, Edinburgh',
- 'Grassmarket':'Grassmarket',
- 'Edinburgh Castle':'Edinburgh Castle',
- 'George Square':'George Square, Edinburgh',
- 'Scottish National Gallery':'Scottish National Gallery',
- 'Stonehaven & Dunnottar Castle':'Dunnottar Castle',
- 'Tour delle Highlands — GetYourGuide':'Scottish Highlands'
-};
-const photoHints={
- 'Pickleback':'pickleback whisky shot',
- 'Tesco':'Tesco supermarket Edinburgh',
- 'Sainsbury’s':'Sainsburys supermarket Edinburgh',
- 'Lidl':'Lidl supermarket Edinburgh',
- 'M&S':'Marks and Spencer store Edinburgh',
- 'The Original Mosque Kitchen & Café':'Original Mosque Kitchen 50 Potterrow Edinburgh',
- 'Braw Brunch':'Braw Brunch Edinburgh',
- 'Castle Café':'Scottish breakfast Edinburgh',
- 'Pepe’s Piri Piri':'Piri piri chicken',
- 'Pizza Posto':'Pizza Posto Edinburgh',
- 'Mr Wood Fire':'Neapolitan pizza Scotland',
- 'Stonehaven & Dunnottar Castle':'Dunnottar Castle Stonehaven',
- 'The Bay Fish & Chips':'Fish and chips Stonehaven',
- 'Tour delle Highlands — GetYourGuide':'Scottish Highlands landscape',
- 'Floral Clock':'Floral Clock Edinburgh',
- 'The Elephant House Café · Victoria Street':'Elephant House Cafe 30 Victoria Street Edinburgh',
- 'Blackwell’s':'Blackwell bookshop Edinburgh',
- 'Informatics Forum':'University of Edinburgh Informatics Forum',
- 'Rockstar North':'Rockstar North Edinburgh building'
-};
-const illustrativeHints={
- 'Pickleback':'whisky shot pickle',
- 'The Original Mosque Kitchen & Café':'Indian curry plate',
- 'Bertie’s Proper Fish & Chips':'fish and chips Scotland',
- 'Pepe’s Piri Piri':'chicken barbecue food',
- 'Braw Brunch':'breakfast plate Edinburgh',
- 'Black Medicine Coffee':'coffee cup Edinburgh',
- 'M&S':'supermarket Edinburgh',
- 'Tesco':'supermarket Edinburgh',
- 'Sainsbury’s':'supermarket Edinburgh',
- 'Lidl':'supermarket Edinburgh',
- 'Makars Mash Bar':'mashed potatoes Scottish food',
- 'Castle Café':'full Scottish breakfast',
- 'Pizza Posto':'pizza Margherita',
- 'Mr Wood Fire':'Neapolitan pizza',
- 'The Bay Fish & Chips':'fish and chips',
- 'Union Social Garden':'pub garden Edinburgh',
- 'The Jolly Judge':'Edinburgh pub interior',
- 'Frankenstein Bar':'Edinburgh pub interior'
-};
-// Fotografie selezionate manualmente: ogni nome è associato a un file reale di Wikimedia Commons.
+// Only hand-curated photographs are displayed.
 const curatedPhotos={
  "The Meadows": {
   "file": "The Meadows, Edinburgh - geograph.org.uk - 4506205.jpg",
@@ -401,38 +338,12 @@ function curatedPhoto(p){
  const entry=curatedPhotos[p.name];if(!entry)return null;
  const name=entry.file.replace(/ /g,'_');
  const source='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(name);
- const url='https://commons.wikimedia.org/wiki/Special:Redirect/file/'+encodeURIComponent(name)+'?width=960';
- return {url,source,credit:entry.author+' · '+entry.license+' · Wikimedia Commons',illustrative:false,curated:true};
+ const base='https://commons.wikimedia.org/wiki/Special:Redirect/file/'+encodeURIComponent(name);
+ const url=base+'?width=960';
+ const thumbnailUrl=base+'?width=480';
+ return {url,thumbnailUrl,source,credit:entry.author+' · '+entry.license+' · Wikimedia Commons',illustrative:false,curated:true};
 }
-const photoCache=new Map(),photoPromises=new Map();
-function isPhoto(info){return info&&/^https:\/\/upload\.wikimedia\.org\//.test(info.url)}
-async function wikiPhoto(p){
-  const title=wikiTitles[p.name];if(!title)return null;
-  const u=new URL('https://en.wikipedia.org/w/api.php');
-  Object.entries({action:'query',format:'json',origin:'*',prop:'pageimages',titles:title,pithumbsize:'960',pilicense:'free',redirects:'1'}).forEach(([k,v])=>u.searchParams.set(k,v));
-  const r=await fetch(u.toString());if(!r.ok)throw Error('Wikipedia');
-  const j=await r.json(),pg=Object.values(j.query?.pages||{}).find(x=>x.thumbnail?.source&&x.pageimage);
-  if(!pg)return null;
-  return {url:pg.thumbnail.source,source:'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(pg.pageimage.replace(/ /g,'_')),credit:'Wikimedia Commons (vedi autore e licenza)',illustrative:false};
-}
-async function commonsPhoto(term,illustrative,expectedName){
-  const u=new URL('https://commons.wikimedia.org/w/api.php');
-  Object.entries({action:'query',format:'json',origin:'*',generator:'search',gsrsearch:term+' filetype:bitmap',gsrnamespace:'6',gsrlimit:'10',prop:'imageinfo',iiprop:'url|mime|size|extmetadata',iiurlwidth:'960'}).forEach(([k,v])=>u.searchParams.set(k,v));
-  const r=await fetch(u.toString());if(!r.ok)throw Error('Commons');
-  const j=await r.json();
-  const pages=Object.values(j.query?.pages||{}).sort((a,b)=>(a.index||99)-(b.index||99));
-  const candidates=pages.filter(pg=>{
-    const v=pg.imageinfo?.[0],name=pg.title||'';
-    return v&&v.width>=500&&v.height>=250&&/image\/(jpeg|png|webp)/.test(v.mime||'')&&!/logo|map|diagram|poster|vector|advert|screenshot|illustration|cartoon|icon|flag|trademark/i.test(name)
-  });
-  const norm=t=>t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ');
-  const identifyingWords=(expectedName||'').split(/[^\p{L}\p{N}]+/u).map(norm).filter(w=>w.length>=4&&!['edinburgh','scotland','house','street','castle','museum','coffee','beach','proper'].includes(w));
-  const pg=expectedName?candidates.find(x=>identifyingWords.length>0&&identifyingWords.some(w=>norm(x.title).includes(w))):candidates[0];if(!pg)return null;
-  const v=pg.imageinfo[0];
-  const author=(v.extmetadata?.Artist?.value||'').replace(/<[^>]+>/g,' ').replace(/&[^;]+;/g,' ').replace(/\s+/g,' ').trim().slice(0,95);
-  const licence=(v.extmetadata?.LicenseShortName?.value||'licenza nella scheda Commons').replace(/<[^>]+>/g,'').slice(0,35);
-  return {url:v.thumburl||v.url,source:v.descriptionurl||('https://commons.wikimedia.org/wiki/'+encodeURIComponent(pg.title.replace(/ /g,'_'))),credit:(author?author+' · ':'')+licence+' · Wikimedia Commons',illustrative};
-}
+const photoCache=new Map();
 function getPhoto(p){
  if(photoCache.has(p.id))return photoCache.get(p.id);
  // Nessuna ricerca casuale: mostriamo solo foto dei luoghi selezionate e attribuite.
@@ -463,7 +374,7 @@ function loadPhoto(el){
   img.alt=photo.kind==='logo'?'Logo: '+p.name:photo.illustrative?'Fotografia illustrativa':'Fotografia: '+p.name;
   if(photo.kind==='logo'){img.style.objectFit='contain';img.style.backgroundColor='#fff'}
   img.onerror=()=>{if(!el.isConnected)return;img.remove();el.innerHTML='<span class="photo-unavailable">Foto non disponibile</span>'};
-  img.src=photo.url;
+  img.src=(!inDetail&&photo.thumbnailUrl)||photo.url;
   el.replaceChildren(img);
   if(photo.illustrative){
     const tag=document.createElement('span');
