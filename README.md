@@ -10,11 +10,16 @@ Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 - Dove la sede non è specificata, gli orari sono discordanti o manca una fonte, la card indica che serve un controllo. Ultimo controllo manuale: **15 ottobre 2026**. Nessun indicatore “Aperto ora” viene calcolato automaticamente.
 - Preferiti salvati sul dispositivo nel browser.
 
-## Fotografie
+## Fotografie selezionate
 
-Le fotografie sono caricate con le API pubbliche di Wikipedia / Wikimedia Commons, con crediti e link alla fonte nelle schede di dettaglio. Per i risultati Commons viene privilegiato il nome esatto del luogo; una foto generica di fallback è segnalata come **foto illustrativa**, per non farla passare per una fotografia del posto.
+La guida contiene **27 fotografie di luoghi reali selezionate manualmente**, tra cui The Meadows, Arthur's Seat, Rockstar North, Mosque Kitchen, The Last Drop, National Museum of Scotland, Scott Monument, Scottish Parliament, Calton Hill, The Jolly Judge, Dean Village, Princes Street Gardens, Floral Clock, Portobello Beach, Cables Wynd House, Greyfriars Kirkyard, Greyfriars Bobby, Royal Mile, Victoria Street, Grassmarket, Edinburgh Castle, George Square, Frankenstein Bar, Scottish National Gallery, The Elephant House, Dunnottar Castle e Informatics Forum.
 
-**Non sono state copiate immagini dalla ricerca Google Maps.** Google Place Photos richiede integrazione API, attribuzione e conformità alle norme di utilizzo; non è lecito scaricare e ripubblicare automaticamente la prima immagine della scheda Maps. Il dettaglio di ciascun luogo include un link per consultare immagini e orari direttamente su Google Maps.
+Ogni immagine viene caricata dal file identificato di **Wikimedia Commons**, tramite la funzione `Special:Redirect/file`, senza una ricerca casuale. Nel dettaglio sono presenti autore, tipo di licenza e collegamento alla scheda dell'immagine. Le foto delle card sono anteprime ritagliate visivamente per il layout, non foto generiche di altri locali.
+
+Per gli **altri 17 elementi**, dove una foto riutilizzabile non è stata individuata o la voce non rappresenta un luogo specifico (ad esempio Pickleback oppure catene di supermercati senza una filiale indicata), il sito non mostra immagini fuorvianti. Le schede dei luoghi hanno un collegamento a Google Maps per consultare le immagini disponibili.
+
+**Non sono state scaricate o ripubblicate fotografie da Google Maps.** Tutte le immagini della selezione sono legate alle rispettive pagine Wikimedia Commons, in modo da rispettare le licenze dei fotografi.
+
 
 ## Pubblicazione
 
