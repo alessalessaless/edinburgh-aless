@@ -1,23 +1,33 @@
 # Edinburgh Aless · Mild or Spicy?
 
-Guida personale mobile-first di Edimburgo. Homepage Mild/Spicy, Esplora diviso in Colazione, Giretti, Pranzo, Birrette, Cena e Post cena, Preferiti, Ale’s Path, Loyalty Cards e Survival Notes.
+Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
 
-## Pubblicazione
+## Interfaccia
 
-Il sito è statico, si trova in `index.html` e non richiede build.
-
-GitHub → Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save.
-
-URL previsto: https://alessalessaless.github.io/edinburgh-aless/
+- **Esplora e Ale’s Path** raggruppano le schede in Colazione, Giretti, Cibo, Birrette e Post cena.
+- Le emoji 🌅 ☀️ 🌇 🌙 indicano il momento consigliato per la tappa (non corrispondono agli orari ufficiali).
+- **Orari di apertura** mostrati direttamente nelle schede. I dati verificati sono collegati, nel dettaglio, alle pagine ufficiali oppure a terze parti esplicitamente indicate.
+- Dove la sede non è specificata, gli orari sono discordanti o manca una fonte, la card indica che serve un controllo. Ultimo controllo manuale: **15 ottobre 2026**. Nessun indicatore “Aperto ora” viene calcolato automaticamente.
+- Preferiti salvati sul dispositivo nel browser.
 
 ## Fotografie
 
-Le immagini delle schede vengono cercate al momento dell'apertura tramite le API di Wikipedia/Wikimedia Commons (foto con licenza libera). Dove non si trova una fotografia attendibile del luogo, viene usata una foto illustrativa, segnalata nella scheda. Per ogni foto disponibile è presente il collegamento alla fonte per verificare autore e licenza. La disponibilità delle immagini dipende dalla rete e dalle API esterne.
+Le fotografie sono caricate con le API pubbliche di Wikipedia / Wikimedia Commons, con crediti e link alla fonte nelle schede di dettaglio. Per i risultati Commons viene privilegiato il nome esatto del luogo; una foto generica di fallback è segnalata come **foto illustrativa**, per non farla passare per una fotografia del posto.
+
+**Non sono state copiate immagini dalla ricerca Google Maps.** Google Place Photos richiede integrazione API, attribuzione e conformità alle norme di utilizzo; non è lecito scaricare e ripubblicare automaticamente la prima immagine della scheda Maps. Il dettaglio di ciascun luogo include un link per consultare immagini e orari direttamente su Google Maps.
+
+## Pubblicazione
+
+Il sito è statico e si trova in `index.html`. Non necessita di build.
+
+GitHub → Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save.
+
+Indirizzo atteso: https://alessalessaless.github.io/edinburgh-aless/
 
 ## Loyalty Cards
 
-Sono incluse le tessere Lidl Plus e Tesco Clubcard, ricostruite come QR code e codice a barre tramite librerie JS. I numeri delle tessere sono inclusi nell'HTML e sono **pubblicamente visibili a chiunque acceda al repository o al sito**. La generazione dei codici grafici richiede una connessione a Internet.
+Sono incluse Lidl Plus e Tesco Clubcard come codici scansionabili, generati via librerie JavaScript esterne; richiedono Internet. **I numeri delle carte sono visibili pubblicamente** nel codice sorgente della repository.
 
-## Note
+## Verifiche finali
 
-Le fasce della giornata sono suggerimenti e **non garantiscono gli orari di apertura**. Verificare i siti ufficiali prima di andare. I preferiti sono salvati soltanto nel browser del dispositivo usato.
+Controllare da telefono fotografie e codici scansionabili, e verificare in prossimità della visita gli orari, gli eventuali cambiamenti di sede e le chiusure eccezionali. Le fotografie e i dati dei luoghi dipendono anche da servizi esterni.
