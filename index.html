@@ -66,8 +66,8 @@ function hoursFor(p){
 function phasesFor(p){
   const n=p.name,c=p.category,phases=[];
   if(breakfastNames.includes(n))phases.push('Colazione');
-  if(['Parchi','Passeggiate','Curiosità','Monumenti','Musei','Librerie','Supermercati','Vestiario','Fuori da Edimburgo','Ale’s Path'].includes(c))phases.push('Giretti');
-  if(['Cibo','Pizza'].includes(c)&&!['Braw Brunch','Castle Café'].includes(n) || n==='The Bay Fish & Chips')phases.push('Cibo');
+  if(['Parchi','Passeggiate','Curiosità','Monumenti','Musei','Librerie','Vestiario','Fuori da Edimburgo','Ale’s Path'].includes(c))phases.push('Giretti');
+  if(c==='Supermercati'||(['Cibo','Pizza'].includes(c)&&!['Braw Brunch','Castle Café'].includes(n))||n==='The Bay Fish & Chips')phases.push('Cibo');
   if(c==='Pub & Birre')phases.push('Pub');
   if(n==='The Elephant House Café · Victoria Street'&&!phases.includes('Giretti'))phases.push('Giretti');
   return [...new Set(phases)];
@@ -466,7 +466,7 @@ function phaseSelect(next){phase=next;updateResults();renderPhaseControls()}
 function filterSelect(next){filter=next;updateResults();renderFilterControls()}
 function renderPhaseControls(){document.querySelectorAll('[data-phase]').forEach(el=>{const on=el.dataset.phase===phase;el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on))})}
 function renderFilterControls(){document.querySelectorAll('[data-filter]').forEach(el=>{const on=el.dataset.filter===filter;el.classList.toggle('active',on);el.setAttribute('aria-pressed',String(on))})}
-function filteredPlaces(){return places.filter(p=>p.type!=='personal'&&(filter==='Tutti'||(filter==='Mild'&&p.type==='mild')||(filter==='Spicy'&&p.type==='spicy')||p.category===filter)).filter(p=>(p.name+' '+p.category+' '+p.description).toLowerCase().includes(query.toLowerCase()))}
+function filteredPlaces(){return places.filter(p=>p.type!=='personal'&&(filter==='Tutti'||(filter==='Mild'&&p.type==='mild')||(filter==='Spicy'&&p.type==='spicy')||p.category===filter||(filter==='Cibo'&&p.category==='Supermercati'))).filter(p=>(p.name+' '+p.category+' '+p.description).toLowerCase().includes(query.toLowerCase()))}
 function exploreResults(){return groupedByPhase(filteredPlaces());}
 
 function render(){
