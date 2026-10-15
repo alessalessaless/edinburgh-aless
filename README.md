@@ -8,7 +8,7 @@ Il titolo visibile del sito è **Edinburgh**; per non rompere i link la reposito
 
 Accanto a **Qualche idea**, il pulsante **Randomizza scelte** sostituisce le quattro card con nuovi suggerimenti casuali, senza ripetere immediatamente quelli già visibili.
 
-Prima dei percorsi Mild/Spicy compare il consiglio sull'arrivo in aeroporto: l'**Airlink 100** collega l'aeroporto al centro e offre l'**Airport Open Return**, un ritorno a data aperta che costa meno di due biglietti singoli. Per le condizioni di validità consultare [Lothian Buses](https://www.lothianbuses.com/our-services/airport-buses/) al momento dell'acquisto. Il consiglio è personale: l'autore non ha provato il tram.
+Prima dei percorsi Mild/Spicy compare il consiglio sull'arrivo in aeroporto: l'**Airlink 100** collega l'aeroporto al centro e offre l'**Airport Open Return**, un ritorno a data aperta che costa meno di due biglietti singoli. Il sito mostra un link alle [comunicazioni ufficiali](https://www.lothianbuses.com/our-services/airport-buses/). Il consiglio è personale: l'autore non ha provato il tram.
 
 ## Interfaccia
 
@@ -56,8 +56,8 @@ Indirizzo atteso: https://alessalessaless.github.io/edinburgh-aless/
 
 ## Loyalty Cards
 
-Sono incluse Lidl Plus e Tesco Clubcard come codici scansionabili, generati via librerie JavaScript esterne; richiedono Internet. **I numeri delle carte sono visibili pubblicamente** nel codice sorgente della repository.
+Le carte **Lidl Plus** e **Tesco Clubcard** ora mostrano solo il numero e un pulsante **Copia codice** (con tentativo di copia negli appunti e soluzione alternativa per browser meno recenti). Non vengono più generati QR code o codici a barre. Sotto ogni numero c'è un collegamento **Aggiungi su Klarna**, con logo Klarna, che apre [la pagina ufficiale dell'app](https://www.klarna.com/it/klarna-app/). **Non esiste integrazione tra il sito e Klarna**: è necessario copiare il numero e incollarlo manualmente nell'app. I numeri delle carte restano pubblicamente visibili nel codice HTML della repository.
 
 ## Verifiche finali
 
-Controllare da telefono fotografie e codici scansionabili, e verificare in prossimità della visita gli orari, gli eventuali cambiamenti di sede e le chiusure eccezionali. Le fotografie e i dati dei luoghi dipendono anche da servizi esterni.
+Controllare da telefono fotografie e pulsanti di copia delle tessere, e verificare in prossimità della visita gli orari, gli eventuali cambiamenti di sede e le chiusure eccezionali. Le fotografie e i dati dei luoghi dipendono anche da servizi esterni.
