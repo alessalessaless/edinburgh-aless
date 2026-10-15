@@ -1,6 +1,14 @@
-# Edinburgh Aless · Mild or Spicy?
+# Edinburgh · Mild or Spicy?
 
 Guida personale mobile-first di Edimburgo, pubblicata con GitHub Pages.
+
+## Homepage
+
+Il titolo visibile del sito è **Edinburgh**; per non rompere i link la repository mantiene il nome `edinburgh-aless`.
+
+Accanto a **Qualche idea**, il pulsante **Randomizza scelte** sostituisce le quattro card con nuovi suggerimenti casuali, senza ripetere immediatamente quelli già visibili.
+
+Prima dei percorsi Mild/Spicy compare il consiglio sull'arrivo in aeroporto: l'**Airlink 100** collega l'aeroporto al centro e offre l'**Airport Open Return**, un ritorno a data aperta che costa meno di due biglietti singoli. Per le condizioni di validità consultare [Lothian Buses](https://www.lothianbuses.com/our-services/airport-buses/) al momento dell'acquisto. Il consiglio è personale: l'autore non ha provato il tram.
 
 ## Interfaccia
 
